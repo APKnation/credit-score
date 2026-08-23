@@ -1,8 +1,14 @@
+import os
 import pickle, json
 import pandas as pd, numpy as np
 
-loaded_model = pickle.load(open('../../Deep Learning Model/finalized_model.sav', 'rb'))
-loaded_mapper = pickle.load(open('../../Deep Learning Model/mapper.pkl', 'rb'))
+# Resolve path relative to this file's location
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+model_path = os.path.join(BASE_DIR, 'Deep Learning Model', 'finalized_model.sav')
+mapper_path = os.path.join(BASE_DIR, 'Deep Learning Model', 'mapper.pkl')
+
+loaded_model = pickle.load(open(model_path, 'rb'))
+loaded_mapper = pickle.load(open(mapper_path, 'rb'))
 
 def preProcess(a, mapper,parameter_cols):
     data=list(a.values())

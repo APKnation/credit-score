@@ -10,8 +10,11 @@ CORS(app)
 ml_host = '0.0.0.0'
 ml_port = '5000'
 
+import os
+
 def connect():
-    with open('credentials.json') as json_data:
+    cred_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'credentials.json')
+    with open(cred_path) as json_data:
         credentials = json.load(json_data)
         json_data.close()
     rpcuser = credentials["rpcuser"]
