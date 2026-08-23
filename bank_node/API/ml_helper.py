@@ -11,13 +11,17 @@ try:
 except ImportError:
     pass
 
+import sklearn.utils
+if not hasattr(sklearn.utils, 'tosequence'):
+    sklearn.utils.tosequence = lambda x: list(x)
+
 # Resolve path relative to this file's location
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 model_path = os.path.join(BASE_DIR, 'Deep Learning Model', 'finalized_model.sav')
 mapper_path = os.path.join(BASE_DIR, 'Deep Learning Model', 'mapper.pkl')
 
-loaded_model = pickle.load(open(model_path, 'rb'))
-loaded_mapper = pickle.load(open(mapper_path, 'rb'))
+loaded_model = pickle.load(open(model_path, 'rb'), encoding='latin1')
+loaded_mapper = pickle.load(open(mapper_path, 'rb'), encoding='latin1')
 
 def preProcess(a, mapper,parameter_cols):
     data=list(a.values())
