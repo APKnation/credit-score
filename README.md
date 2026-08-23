@@ -154,3 +154,4 @@ We have three main target customers:
 <b> Government (i.e.: Financial regulators) → </b>  With the ease in acquiring a standardized credit score, governments could benefit from the increasingly accurate data by leveraging its ability to distinguish the financial capabilities of its citizens. Consequently, via data analyses, the government could derive or be one of the indicators to determine the economic stability of the region as a whole. This could be achieved by implementing a government node on the blockchain and having a specific machine learning model for their analysis in the form of anonymized data.
 
 <b> Credit Sense makes Sense! </b>
+# credit-score
