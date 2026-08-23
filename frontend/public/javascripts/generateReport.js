@@ -1,6 +1,6 @@
-old_report_request = function() {
+old_report_request = function () {
   var x = document.getElementById('submit');
-  x.onclick = function() {
+  x.onclick = function () {
     var xhttp = new XMLHttpRequest();
     xhttp.open('POST', 'http://52.187.163.79:9685', true);
     xhttp.setRequestHeader('Content-type', 'application/json');
@@ -12,13 +12,13 @@ old_report_request = function() {
     var lamda = JSON.stringify(data);
     xhttp.send(lamda);
 
-    xhttp.onload = function() {
+    xhttp.onload = function () {
       window.location.href = 'scoredash/index.html';
     };
   };
 };
 
-submit_report_request = function() {
+submit_report_request = function () {
   var id = document.getElementById('hkid_val').value;
   console.log(id);
   var data = {};
@@ -33,29 +33,50 @@ submit_report_request = function() {
       },
       dataType: 'json',
       data: json,
-      success: function(applicant) {
+      success: function (applicant) {
         if (applicant.status) {
-            alert(applicant.status);
-            return;
+          alert(applicant.status);
+          return;
         }
         $('#form').hide();
         console.log(applicant[0].id);
-        $('#score').html(applicant[applicant.length - 1].score);
+        var scoreVal = parseFloat(applicant[applicant.length - 1].score);
+        $('#score').html(scoreVal);
         $('#score').css('text-align', 'center');
         $('#score').css('font-size', '60px');
         $('#score').css('font-weight', 'bold');
-        $('#score').css('color', 'tomato');
+
+        var aiSuggestion = "";
+        var scoreColor = "";
+        if (scoreVal >= 8.0) {
+          aiSuggestion = "AI Suggestion: Low Risk - Recommended for Approval";
+          scoreColor = "#10b981";
+        } else if (scoreVal >= 5.0) {
+          aiSuggestion = "I Suggestion: Moderate Risk - Review Manually";
+          scoreColor = "#f59e0b";
+        } else {
+          aiSuggestion = "AI Suggestion: High Risk - Recommended for Rejection";
+          scoreColor = "#ef4444";
+        }
+
+        $('#score').css('color', scoreColor);
+
+        if ($('#ai_suggestion').length === 0) {
+          $('#score').after('<h4 id="ai_suggestion" style="text-align:center; font-weight:600; color:' + scoreColor + '; margin-top:10px;">' + aiSuggestion + '</h4>');
+        } else {
+          $('#ai_suggestion').html(aiSuggestion).css('color', scoreColor);
+        }
         for (var i = 0; i < applicant.length; i++) {
           $('#itemList').append(
             '<tr><td>' +
-              id +
-              '</td><td>' +
-              applicant[i]['home_ownership'] +
-              '</td><td>' +
-              applicant[i]['status'] +
-              '</td><td>' +
-              applicant[i]['score'] +
-              '</td></tr>'
+            id +
+            '</td><td>' +
+            applicant[i]['home_ownership'] +
+            '</td><td>' +
+            applicant[i]['status'] +
+            '</td><td>' +
+            applicant[i]['score'] +
+            '</td></tr>'
           );
         }
         $('#report').show();
