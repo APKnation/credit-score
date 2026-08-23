@@ -65,7 +65,7 @@ def get_credit_score():
 
 		hexval = finaldata.encode('utf-8')
 		curid = datetime.datetime.now()
-		multichain.publish("strm1", str(curid), binascii.hexlify(hexval))
+		multichain.publish("strm1", str(curid), binascii.hexlify(hexval).decode('utf-8'))
 
 		#send_email('A loan application has been submitted - Bank 1','User #' + str(data['id']) + ' has applied for a loan. Check credit sense portal for details and credit score.')
 

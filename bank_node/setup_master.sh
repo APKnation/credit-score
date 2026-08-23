@@ -7,11 +7,11 @@ git clone http://github.com/piy0999/CreditSense.git
 cd ~/CreditSense
 git config credential.helper store
 cd ~
-echo '3. Install python2 pip...'
+echo '3. Install python3 pip...'
 sudo apt-get update
-sudo apt -y install python-pip
+sudo apt -y install python3-pip
 echo '4. Installing python packages...'
-sudo pip install -r ~/CreditSense/bank_node/ml_requirements.txt
+sudo pip3 install -r ~/CreditSense/bank_node/ml_requirements.txt
 echo '5. Installing multichain...'
 cd ~/tmp
 wget https://www.multichain.com/download/multichain-1.0.4.tar.gz
@@ -47,7 +47,6 @@ sudo ufw --force enable
 nodeaddress=`multichain-cli chain1 getinfo | grep "nodeaddress" | cut -d '"' -f4`
 multichain-cli chain1 create stream strm1 true
 echo "Connect to $nodeaddress from other nodes"
-sudo sed -i 's/Savoir.Savoir/Savoir/g' /usr/local/lib/python2.7/dist-packages/Savoir/__init__.py
 echo '9. Starting flask server...'
 cd ~/CreditSense/bank_node/API
-python mlapi.py &
+python3 mlapi.py &

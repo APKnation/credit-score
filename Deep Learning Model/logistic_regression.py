@@ -32,7 +32,7 @@ def preProcess(a, mapper,parameter_cols):
     return XX
 
 input_file='lending-club-data.csv'
-loan_file = pd.read_csv(input_file, infer_datetime_format = True, encoding = "ISO-8859-1", error_bad_lines=False, index_col=False, low_memory=False)
+loan_file = pd.read_csv(input_file, encoding = "ISO-8859-1", on_bad_lines='skip', index_col=False, low_memory=False)
 
 f = open('id.txt','r')
 message = f.read()
