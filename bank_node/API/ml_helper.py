@@ -1,6 +1,15 @@
 import os
+import sys
 import pickle, json
 import pandas as pd, numpy as np
+import sklearn.linear_model._logistic
+sys.modules['sklearn.linear_model.logistic'] = sklearn.linear_model._logistic
+
+try:
+    import sklearn.preprocessing._label
+    sys.modules['sklearn.preprocessing.label'] = sklearn.preprocessing._label
+except ImportError:
+    pass
 
 # Resolve path relative to this file's location
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
