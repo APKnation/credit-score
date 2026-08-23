@@ -176,7 +176,7 @@
 <script src="/javascripts/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-  $.get(window.location.origin + ':5000/pending_applications', function(data) {
+  $.get(window.location.protocol + '//' + window.location.hostname + ':5001/pending_applications', function(data) {
     for (var i = 0; i < data.length; i++) {
       id = unhash(data[i]['id']);
       $('#applications').append(
@@ -203,7 +203,7 @@ $(document).ready(function() {
 
   submit_decision = function(id, decision) {
     $.ajax({
-      url: window.location.origin + ':5000/update_application',
+      url: window.location.protocol + '//' + window.location.hostname + ':5001/update_application',
       type: 'POST',
       data: JSON.stringify({ id: id, new_status: decision }),
       contentType: 'application/json; charset=utf-8',

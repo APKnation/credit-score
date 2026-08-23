@@ -1,65 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* Original demo.css content preserved at the top for layout stability */
 @media (min-width: 992px) {
-    .typo-line {
-        padding-left: 140px;
-        margin-bottom: 40px;
-        position: relative;
-    }
-    .typo-line .category {
-        transform: translateY(-50%);
-        top: 50%;
-        left: 0px;
-        position: absolute;
-    }
-    .sidebar .nav>li.active-pro {
-        position: absolute;
-        width: 100%;
-        bottom: 10px;
-    }
+    .typo-line { padding-left: 140px; margin-bottom: 40px; position: relative; }
+    .typo-line .category { transform: translateY(-50%); top: 50%; left: 0px; position: absolute; }
+    .sidebar .nav>li.active-pro { position: absolute; width: 100%; bottom: 10px; }
+}
+#map { position: relative; width: 100%; height: calc(100% - 60px); margin-top: 70px; }
+.places-buttons .btn { margin-bottom: 30px }
+.space-70 { height: 70px; display: block; }
+.tim-row { margin-bottom: 20px; padding-top: 50px; }
+.tim-row h3 { margin-top: 0; }
+.tim-typo { padding-left: 25%; margin-bottom: 40px; position: relative; }
+.tim-typo .tim-note { bottom: 10px; color: #c0c1c2; display: block; font-weight: 400; font-size: 13px; line-height: 13px; left: 0; margin-left: 20px; position: absolute; width: 260px; }
+
+/* ========================================================
+   MODERN DARK MODE GLASSMORPHISM THEME OVERRIDE
+   ======================================================== */
+
+body {
+    background-color: #0f172a !important;
+    background-image: radial-gradient(circle at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+                      radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.1) 0px, transparent 50%) !important;
+    color: #f8fafc !important;
+    font-family: 'Outfit', sans-serif !important;
 }
 
-#map {
-    position: relative;
-    width: 100%;
-    height: calc(100% - 60px);
-    margin-top: 70px;
+/* Glassmorphism Cards */
+.card {
+    background: rgba(30, 41, 59, 0.6) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    margin-bottom: 30px;
 }
 
-.places-buttons .btn {
-    margin-bottom: 30px
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
 }
 
-.space-70 {
-    height: 70px;
-    display: block;
+.card [data-background-color="purple"], 
+.card [data-background-color="blue"], 
+.card [data-background-color="green"], 
+.card [data-background-color="orange"], 
+.card [data-background-color="red"] {
+    background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%) !important;
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4) !important;
+    border-radius: 12px !important;
+    margin-top: -20px;
 }
 
-.tim-row {
-    margin-bottom: 20px;
+/* Typography */
+h1, h2, h3, h4, h5, h6, .title, .card-title {
+    color: #f1f5f9 !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 600 !important;
+}
+p, .category, .control-label, .stats, .footer {
+    color: #94a3b8 !important;
 }
 
-.tim-typo {
-    padding-left: 25%;
-    margin-bottom: 40px;
-    position: relative;
+/* Inputs and Forms */
+.form-control, input.form-control {
+    background-image: linear-gradient(#8b5cf6, #8b5cf6), linear-gradient(#334155, #334155) !important;
+    color: #e2e8f0 !important;
+    font-size: 16px !important;
+}
+.form-group.label-floating label.control-label, .form-group.label-placeholder label.control-label {
+    color: #64748b !important;
+    font-weight: 400 !important;
+}
+.form-control:focus {
+    background-size: 100% 2px, 100% 1px !important;
+    transition-duration: 0.3s !important;
 }
 
-.tim-typo .tim-note {
-    bottom: 10px;
-    color: #c0c1c2;
-    display: block;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 13px;
-    left: 0;
-    margin-left: 20px;
-    position: absolute;
-    width: 260px;
+/* Buttons */
+.btn.btn-primary, .btn.btn-primary:hover, .btn.btn-primary:focus, .btn.btn-primary:active {
+    background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%) !important;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4) !important;
+    border-radius: 8px !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.5px !important;
+    transition: all 0.3s ease !important;
+    padding: 12px 30px !important;
+}
+.btn.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6) !important;
 }
 
-.tim-row {
-    padding-top: 50px;
+/* Sidebar Styling */
+.sidebar {
+    background: rgba(15, 23, 42, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.1) !important;
+}
+.sidebar .sidebar-wrapper {
+    background: transparent !important;
+}
+.sidebar .nav li.active a {
+    background: rgba(139, 92, 246, 0.15) !important;
+    color: #c4b5fd !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+}
+.sidebar .nav li a {
+    color: #94a3b8 !important;
+    transition: all 0.3s ease !important;
+}
+.sidebar .nav li a:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: #f1f5f9 !important;
+}
+.sidebar .logo .simple-text {
+    color: #f1f5f9 !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+.sidebar:after, .sidebar:before {
+    display: none !important; /* Hide legacy background images */
+}
+.sidebar-background {
+    display: none !important;
 }
 
-.tim-row h3 {
-    margin-top: 0;
+/* Tables */
+.table>thead>tr>th {
+    color: #c4b5fd !important;
+    font-weight: 500 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+.table>tbody>tr>td {
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    color: #e2e8f0 !important;
+    vertical-align: middle !important;
+}
+.table>tbody>tr:hover {
+    background: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Navigation Top Bar */
+.navbar-transparent {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    background: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(12px) !important;
+    padding-top: 10px !important;
+}
+.navbar.navbar-transparent .navbar-brand, .navbar-default .navbar-brand {
+    color: #f1f5f9 !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 600 !important;
+}
+
+/* Profile / Info Cards */
+.card-profile .card-avatar {
+    border: 3px solid #8b5cf6 !important;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3) !important;
+    background: #0f172a !important;
+}
+
+/* Global scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #8b5cf6;
+}
+
+/* Dashboard specific elements */
+.card-stats .card-header {
+    float: left;
+    text-align: center;
+}
+.card-stats .card-header i {
+    font-size: 36px;
+    line-height: 56px;
+    width: 56px;
+    height: 56px;
+    color: #fff;
 }

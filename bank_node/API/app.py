@@ -1,6 +1,9 @@
 from flask import Flask, request, jsonify
+import sys, os
+# Use local Savoir.py wrapper (Python 3 compatible)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from Savoir import Savoir
-import requests, json, time, datetime, hashlib, sys
+import requests, json, time, datetime, hashlib
 from random import randint
 from flask_cors import CORS, cross_origin
 
@@ -11,7 +14,8 @@ ml_host = ''
 ml_port = '5000'
 
 def connect():
-    with open('credentials.json') as json_data:
+    cred_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'credentials.json')
+    with open(cred_path) as json_data:
         credentials = json.load(json_data)
         json_data.close()
     rpcuser = credentials["rpcuser"]
@@ -22,7 +26,7 @@ def connect():
 
     global ml_host
     global ml_port
-    ml_host = credentials["mlhost"]
+    ml_host = credentials.get("mlhost", "localhost")
     ml_port = credentials["mlport"]
 
     return Savoir(rpcuser, rpcpasswd, rpchost, rpcport, chainname)
@@ -76,8 +80,7 @@ def get_all_applications_by_id(given_id):
         application = json.loads(bytearray.fromhex(application['data']).decode())
         if application['id'] == hashed_id:
             applications.append(application)
-    return applications
-    if len(application) == 0:
+    if len(applications) == 0:
         return None
     else:
         return applications
@@ -225,4 +228,4 @@ def update_application():
         return jsonify({"status": "required params not provided"})
 
 if __name__ == "__main__":
-    app.run(debug=True,host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5001)

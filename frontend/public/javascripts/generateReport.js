@@ -27,13 +27,17 @@ submit_report_request = function() {
   if (id !== null) {
     $.ajax({
       type: 'POST',
-      url: window.location.origin + ':5000/get_all_applications_by_id',
+      url: window.location.protocol + '//' + window.location.hostname + ':5001/get_all_applications_by_id',
       headers: {
         'Content-Type': 'application/json'
       },
       dataType: 'json',
       data: json,
       success: function(applicant) {
+        if (applicant.status) {
+            alert(applicant.status);
+            return;
+        }
         $('#form').hide();
         console.log(applicant[0].id);
         $('#score').html(applicant[applicant.length - 1].score);
